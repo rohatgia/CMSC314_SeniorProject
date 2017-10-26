@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class BuildTask {
 
 	BuildTask(){
-		displayMenu();
+		
 	}
 	
     public void displayMenu(){

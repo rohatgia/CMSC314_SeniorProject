@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class ConfigureStream {
 
 	ConfigureStream(){
-		displayMenu();
+		
 	}
 	
     public void displayMenu(){

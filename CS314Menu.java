@@ -1,8 +1,11 @@
+import java.util.ArrayList;
 import java.util.Scanner;
+import moa.tasks.EvaluateInterleavedChunks;
 
 public class CS314Menu{
-	public static ConfigureStream cs = null;
-	public static BuildTask bt = null;
+	public static ConfigureStream cs = new ConfigureStream();
+	public static BuildTask bt = new BuildTask();
+	public static ArrayList <EvaluateInterleavedChunks> tasks;
 	
     public static void main(String[] args){
     	CS314Menu mainMenu= new CS314Menu();
@@ -25,9 +28,16 @@ public class CS314Menu{
         	bt = new BuildTask();
         	break;
         case 3:
-        	//execute Task
+        	initializeStreams();
+        	//execute flow
         	break;
     
         }
+    }
+    
+    private void initializeStreams(){
+		for( EvaluateInterleavedChunks t: this.tasks){
+			t.prepareForUse();
+		}
     }
 }
