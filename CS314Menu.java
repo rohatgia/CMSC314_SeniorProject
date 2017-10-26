@@ -3,10 +3,9 @@ import java.util.Scanner;
 import moa.tasks.EvaluateInterleavedChunks;
 
 public class CS314Menu{
-	public static ConfigureStream cs = new ConfigureStream();
-	public static BuildTask bt = new BuildTask();
+	public static ConfigureStream configureStreams = new ConfigureStream();
+	public static BuildTask buildTask = new BuildTask();
 	public static ArrayList <EvaluateInterleavedChunks> tasks;
-	public static EditStream es= new EditStream();
 	
     public static void main(String[] args){
     	CS314Menu mainMenu= new CS314Menu();
@@ -23,10 +22,10 @@ public class CS314Menu{
         
         switch (userChoice){
         case 1:
-        	cs.displayMenu();
+        	configureStreams.displayMenu();
         	break;
         case 2:
-        	bt.displayMenu();
+        	buildTask.displayMenu();
         	break;
         case 3:
         	initializeStreams();

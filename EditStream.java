@@ -18,7 +18,7 @@ public class EditStream {
         
         switch (userChoice){
         case 1:
-        	//Select Stream Menu
+        	//Select Stream Button
         	break;
         case 2:
         	//Rename selected Stream Button

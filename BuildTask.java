@@ -1,7 +1,8 @@
 import java.util.Scanner;
 
 public class BuildTask {
-
+	public static LearnOptions learnOptions = new LearnOptions();
+	
 	BuildTask(){
 		
 	}
@@ -18,7 +19,7 @@ public class BuildTask {
         
         switch (userChoice){
         case 1:
-        	//execute Learn Options Menu
+        	learnOptions.displayMenu();
         	break;
         case 2:
         	//execute Test Options Menu

@@ -1,7 +1,9 @@
 import java.util.Scanner;
 
 public class ConfigureStream {
-
+	public static EditStream editStream= new EditStream();
+	public static ExportStream exportStream = new ExportStream();
+	
 	ConfigureStream(){
 		
 	}
@@ -19,10 +21,10 @@ public class ConfigureStream {
         	//execute Add Stream Menu
         	break;
         case 2:
-        	CS314Menu.es.displayMenu();
+        	editStream.displayMenu();
         	break;
         case 3:
-        	//execute Export Stream Menu
+        	exportStream.displayMenu();
         	break;
     
         }
