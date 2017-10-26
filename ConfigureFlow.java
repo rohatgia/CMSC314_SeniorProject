@@ -16,7 +16,7 @@ public class ConfigureFlow {
         
         switch (userChoice){
         case 1:
-        	
+        	//cycles through "flow modules" each flow module is numbered in an ordinal way so you can get an idea of flow of control
         	break;
         case 2:
         	//add new flow menu
