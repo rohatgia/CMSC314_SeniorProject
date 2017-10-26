@@ -1,6 +1,9 @@
 import java.util.Scanner;
 
 public class CS314Menu{
+	public static ConfigureStream cs = null;
+	public static BuildTask bt = null;
+	
     public static void main(String[] args){
     	CS314Menu mainMenu= new CS314Menu();
     	mainMenu.displayMenu();
@@ -16,10 +19,10 @@ public class CS314Menu{
         
         switch (userChoice){
         case 1:
-        	//execute configureStream Menu
+        	cs = new ConfigureStream();
         	break;
         case 2:
-        	//execute BuildTask Menu
+        	bt = new BuildTask();
         	break;
         case 3:
         	//execute Task
