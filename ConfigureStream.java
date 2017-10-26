@@ -19,7 +19,7 @@ public class ConfigureStream {
         	//execute Add Stream Menu
         	break;
         case 2:
-        	//execute Edit Stream Menu
+        	CS314Menu.es.displayMenu();
         	break;
         case 3:
         	//execute Export Stream Menu
