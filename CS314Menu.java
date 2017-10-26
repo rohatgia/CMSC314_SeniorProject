@@ -22,10 +22,10 @@ public class CS314Menu{
         
         switch (userChoice){
         case 1:
-        	cs = new ConfigureStream();
+        	cs.displayMenu();
         	break;
         case 2:
-        	bt = new BuildTask();
+        	bt.displayMenu();
         	break;
         case 3:
         	initializeStreams();
