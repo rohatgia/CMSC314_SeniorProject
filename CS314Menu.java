@@ -2,12 +2,29 @@ import java.util.Scanner;
 
 public class CS314Menu{
     public static void main(String[] args){
+    	CS314Menu mainMenu= new CS314Menu();
+    	mainMenu.displayMenu();
+    }
+    
+    public void displayMenu(){
         Scanner userIn = new Scanner(System.in);
         System.out.println("Please enter a menu option: \n" +
-                           "1) Load File \n" +
-                           "2) Build Flow \n" +
-                           "3) Edit Flow \n");
+                           "1) Configure Stream \n" +
+                           "2) Build Task \n" +
+                           "3) Execute Task \n");
         int userChoice = userIn.nextInt();
-        System.out.println("Debug - User Choice: " + userChoice);
+        
+        switch (userChoice){
+        case 1:
+        	//execute configureStream Menu
+        	break;
+        case 2:
+        	//execute BuildTask Menu
+        	break;
+        case 3:
+        	//execute Task
+        	break;
+    
+        }
     }
 }
