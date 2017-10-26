@@ -2,8 +2,12 @@ import java.util.Scanner;
 
 public class BuildTask {
 	public static LearnOptions learnOptions = new LearnOptions();
+	public static TestOptions testOptions = new TestOptions();
+	public static EvaluationOptions evaluationOptions = new EvaluationOptions();
+	private int batchSize=1;
 	
 	BuildTask(){
+		
 		
 	}
 	
@@ -13,7 +17,7 @@ public class BuildTask {
                            "1) Learn Options \n" +
                            "2) Test Options \n" +
                            "3) Evaluation Options \n" +
-                           "4) Batch Size \n" +
+                           "4) Batch Size: "+ getBatchSize() +"\n" +
                            "5) Configure Flow \n");
         int userChoice = userIn.nextInt();
         
@@ -22,18 +26,29 @@ public class BuildTask {
         	learnOptions.displayMenu();
         	break;
         case 2:
-        	//execute Test Options Menu
+        	testOptions.displayMenu();
         	break;
         case 3:
-        	//execute Evaluation Options Menu
+        	evaluationOptions.displayMenu();
         	break;
         case 4:
-        	//execute Batch size Option
+        	setBatchSize(userIn.nextInt());
         	break;
         case 5:
         	//execute Configure Flow Menu
         	break;
-    
         }
     }
+
+    /*
+     * BatchSize Setter/Getter
+     * Allows user to retrieve and set the batch size
+     */
+	private int getBatchSize() {
+		return this.batchSize;
+	}
+	public void setBatchSize(int batchSize){
+		this.batchSize=batchSize;
+	}
+	
 }
