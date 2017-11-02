@@ -1,10 +1,14 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
-public class LearnOptions {
-	//We will need an arrayList of the algorithms the user added (this will likely be an arraylist using the "abstractclassifier" object from the MOA API
+import moa.classifiers.AbstractClassifier;
+import moa.classifiers.bayes.NaiveBayes;
 
+public class LearnOptions {
+	public static ArrayList <AbstractClassifier> classifiers;
+	//We will need an arrayList of the algorithms the user added (this will likely be an arraylist using the "abstractclassifier" object from the MOA API
+	
 	LearnOptions(){
-		
 	}
 	
     public void displayMenu(){
