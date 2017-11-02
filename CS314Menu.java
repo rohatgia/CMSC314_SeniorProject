@@ -33,6 +33,7 @@ public class CS314Menu{
         case 3:
         	initializeStreams();
         	tasks.get(0).doTask(); //for now we are only worried about exectuing a single task at a time
+        	System.out.println("Task Complete");
         	break;
     
         }
