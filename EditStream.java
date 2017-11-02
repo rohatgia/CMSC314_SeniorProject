@@ -22,9 +22,12 @@ public class EditStream {
         	break;
         case 2:
         	//Rename selected Stream Button
+        	/*
+        	 * This feature may not be needed...probably just set the "name" of the stream as the file name
+        	 */
         	break;
         case 3:
-        	//Remove Attributes Menu
+        	//Remove Attributes Tool
         	break;
         	
         case 4:

@@ -2,7 +2,6 @@ import java.util.Scanner;
 
 public class BuildTask {
 	public static LearnOptions learnOptions = new LearnOptions();
-	public static TestOptions testOptions = new TestOptions();
 	public static EvaluationOptions evaluationOptions = new EvaluationOptions();
 	private int batchSize=1;
 	
@@ -15,10 +14,9 @@ public class BuildTask {
         Scanner userIn = new Scanner(System.in);
         System.out.println("Please enter a menu option: \n" +
                            "1) Learn Options \n" +
-                           "2) Test Options \n" +
-                           "3) Evaluation Options \n" +
-                           "4) Batch Size: "+ getBatchSize() +"\n" +
-                           "5) Configure Flow \n");
+                           "2) Evaluation Options \n" +
+                           "3) Batch Size: "+ getBatchSize() +"\n" +
+                           "4) Configure Flow \n");
         int userChoice = userIn.nextInt();
         
         switch (userChoice){
@@ -26,15 +24,12 @@ public class BuildTask {
         	learnOptions.displayMenu();
         	break;
         case 2:
-        	testOptions.displayMenu();
-        	break;
-        case 3:
         	evaluationOptions.displayMenu();
         	break;
-        case 4:
+        case 3:
         	setBatchSize(userIn.nextInt());
         	break;
-        case 5:
+        case 4:
         	//execute Configure Flow Menu
         	break;
         }

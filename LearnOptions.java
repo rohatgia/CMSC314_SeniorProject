@@ -1,16 +1,23 @@
 import java.util.Scanner;
 
 public class LearnOptions {
+	//We will need an arrayList of the algorithms the user added (this will likely be an arraylist using the "abstractclassifier" object from the MOA API
+
 	LearnOptions(){
 		
 	}
 	
     public void displayMenu(){
+    	/*
+    	 * List of the currently added algorithms will display here
+    	 */
         Scanner userIn = new Scanner(System.in);
         System.out.println("Please enter a menu option: \n" +
                            "1) Selected Algorithm \n" +
-                           "2) Learning Stream \n" +
-                           "3) Testing Stream \n");
+                           "2) Add Algorithm \n" +
+                           "3) Edit Parameters \n" +
+                           "4) Learning Stream \n" +
+                           "5) Testing Stream \n");
         /*
          * TODO need to scan selected algorithm and list out parameters
          */
