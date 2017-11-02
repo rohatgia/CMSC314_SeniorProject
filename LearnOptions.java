@@ -5,10 +5,11 @@ import moa.classifiers.AbstractClassifier;
 import moa.classifiers.bayes.NaiveBayes;
 
 public class LearnOptions {
-	public static ArrayList <AbstractClassifier> classifiers;
+	public static ArrayList <AbstractClassifier> classifiers = new ArrayList();
 	//We will need an arrayList of the algorithms the user added (this will likely be an arraylist using the "abstractclassifier" object from the MOA API
 	
 	LearnOptions(){
+		
 	}
 	
     public void displayMenu(){
