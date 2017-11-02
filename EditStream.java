@@ -1,6 +1,7 @@
 import java.util.Scanner;
 
 public class EditStream {
+	private int batchSize=1;
 	
 	EditStream(){
 		
@@ -12,7 +13,8 @@ public class EditStream {
                            "1) Select Stream \n" +
                            "2) Rename Selected Stream \n" +
                            "3) Remove Attributes in Selected Stream \n"+
-                           "4) Remove the Selected Stream");
+                           "4) Batch Size: "+ this.getBatchSize()+ "\n" + 
+                           "5) Remove the Selected Stream");
         
         int userChoice = userIn.nextInt();
         
@@ -29,10 +31,23 @@ public class EditStream {
         case 3:
         	//Remove Attributes Tool
         	break;
-        	
         case 4:
+        	setBatchSize(userIn.nextInt());
+        	break;
+        case 5:
         	// Remove selected stream Button
         	break;   
         }
     }
+    
+    /*
+     * BatchSize Setter/Getter
+     * Allows user to retrieve and set the batch size
+     */
+	private int getBatchSize() {
+		return this.batchSize;
+	}
+	public void setBatchSize(int batchSize){
+		this.batchSize=batchSize;
+	}
 }

@@ -18,9 +18,6 @@ public class LearnOptions {
                            "3) Edit Parameters \n" +
                            "4) Learning Stream \n" +
                            "5) Testing Stream \n");
-        /*
-         * TODO need to scan selected algorithm and list out parameters
-         */
         
         int userChoice = userIn.nextInt();
         
@@ -29,9 +26,15 @@ public class LearnOptions {
         	//execute Algorithm Selection Menu
         	break;
         case 2:
-        	//cycles through loaded streams and sets it as the stream to learn from
+        	//add algorithm menu
         	break;
         case 3:
+        	//edit parameters menu
+        	break;
+        case 4:
+        	//cycles through loaded streams and sets it as the stream to learn from
+        	break;
+        case 5:
         	//cycles through loaded streams and sets it as the stream to test from
         	break;
     
