@@ -1,10 +1,11 @@
 import java.util.Scanner;
+import moa.streams.ArffFileStream;
 
 public class EditStream {
 	private int batchSize=1;
 	
 	EditStream(){
-		
+		ArffFileStream currentStream = ConfigureStream.streamList.get(0);
 	}
 	
     public void displayMenu(){
@@ -29,13 +30,19 @@ public class EditStream {
         	 */
         	break;
         case 3:
-        	//Remove Attributes Tool
+			//Remove Attributes Tool
+			//is this supposed to call the arraylist in CS314Menu? Which attributes are we editing, the number of iterations and such? or other arff stream attributes
         	break;
         case 4:
         	setBatchSize(userIn.nextInt());
         	break;
         case 5:
-        	// Remove selected stream Button
+			// Remove selected stream Button
+			for(int i = 0;i<ConfigureStream.streamList.size();i++){
+				if currentStream.equals(ConfigureStream.streamList.get(i)){
+					ConfigureStream.streamList.remove(i);
+				}
+			}
         	break;   
         }
     }
@@ -49,5 +56,12 @@ public class EditStream {
 	}
 	public void setBatchSize(int batchSize){
 		this.batchSize=batchSize;
+	}
+
+	public String[] getStreamDetails(ArffFileStream stream){
+		String[] attributes = getAttributes(stream);
+		String[] retArr = new String[1];
+		return retArr;
+		//placeholder method
 	}
 }
