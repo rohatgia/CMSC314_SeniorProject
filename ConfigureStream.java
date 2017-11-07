@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 import moa.tasks.*;
 import moa.streams.ArffFileStream;
