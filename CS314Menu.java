@@ -16,11 +16,13 @@ public class CS314Menu{
     }
     
     public void displayMenu(){
+    	boolean exit=false;
         Scanner userIn = new Scanner(System.in);
         System.out.println("Please enter a menu option: \n" +
                            "1) Configure Stream \n" +
                            "2) Build Task \n" +
-                           "3) Execute Task \n");
+                           "3) Execute Task \n"+
+                           "101) EXIT PROGRAM");
         int userChoice = userIn.nextInt();
         
         switch (userChoice){
@@ -35,7 +37,15 @@ public class CS314Menu{
         	tempDoTask();
         	System.out.println("Task Complete");
         	break;
+        case 101:
+        	exit=true;
+        	break;
         }
+        
+        if(!exit){
+        	this.displayMenu();
+        }
+        
     }
     
     private void initializeStreams(){

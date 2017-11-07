@@ -21,6 +21,7 @@ public class ConfigureStream {
 	}
 	
     public void displayMenu(){
+    	boolean exit=false;
     	/*
     	 * Display the contents of the Stream arraylist menu here
     	 */
@@ -31,7 +32,8 @@ public class ConfigureStream {
                            "3) Edit Selected Stream \n" +
                            "4) Export Selected Stream \n" +
                            "5) Set Learning Stream \n" +
-                           "6) Set Testing Stream");
+                           "6) Set Testing Stream \n" +
+                           "101) Go Back");
         int userChoice = userIn.nextInt();
         switch (userChoice){
         case 1:
@@ -54,8 +56,14 @@ public class ConfigureStream {
         case 6:
         	testingStream = setStream(userIn, 0);
         	break;
-        
+        case 101:
+        	exit=true;
         }
+        
+        if(!exit){
+        	this.displayMenu();
+        }
+        
     }
     public ArffFileStream setStream(Scanner userIn, int selection){
     	int selectionIdx=selection;
@@ -122,7 +130,7 @@ public class ConfigureStream {
     public void addStream(Scanner userIn){
 
 		System.out.println("Please enter the name of the file to configure a stream for: ");
-		String fileName = userIn.nextLine();
+		String fileName = userIn.next();
 		System.out.println("Please enter the class index");
 		int cIdx = userIn.nextInt();
 		ArffFileStream fileStream = new ArffFileStream(fileName, cIdx);
