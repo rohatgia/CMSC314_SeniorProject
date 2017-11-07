@@ -5,7 +5,7 @@ import moa.classifiers.bayes.NaiveBayes;
 import moa.tasks.EvaluateInterleavedChunks;
 
 public class CS314Menu{
-	//public static ConfigureStream configureStreams = new ConfigureStream();
+	public static ConfigureStream configureStreams = new ConfigureStream();
 	public static BuildTask buildTask = new BuildTask();
 	public static ArrayList <EvaluateInterleavedChunks> tasks = new ArrayList();
 	
@@ -25,7 +25,7 @@ public class CS314Menu{
         
         switch (userChoice){
         case 1:
-        	//configureStreams.displayMenu();
+        	configureStreams.displayMenu();
         	break;
         case 2:
         	buildTask.displayMenu();
@@ -35,7 +35,6 @@ public class CS314Menu{
         	tasks.get(0).doTask(); //for now we are only worried about exectuing a single task at a time
         	System.out.println("Task Complete");
         	break;
-    
         }
     }
     

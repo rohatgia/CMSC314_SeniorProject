@@ -25,6 +25,8 @@ public class LearnOptions {
 	
     public void displayMenu(){
     	boolean exit=false;
+    	System.out.println();
+    	
     	if(userSelectedClassifiers.isEmpty()){
     		System.out.println("No Algorithms currently added to the workspace");
     	}
@@ -35,19 +37,24 @@ public class LearnOptions {
     		System.out.println();
     	}
         Scanner userIn = new Scanner(System.in);
-        System.out.println("Please enter a menu option: \n" +
-                           "1) Selected Algorithm: " + currentSelected.getClass().toString() +"\n" +
-                           "2) Add Algorithm to workspace \n" +
-                           "3) Edit Parameters \n" +
-                           "4) Learning Stream \n" +
-                           "5) Testing Stream \n" +
-                           "101) go back \n");
+        System.out.println("Please enter a menu option:");
+        if(currentSelected!=null){
+        	System.out.println("1) Selected Algorithm: " + currentSelected.getClass().toString());
+        }
+        System.out.println("2) Add Algorithm to workspace \n" +
+                           "3) Edit Parameters \n");
+        if(currentSelected!=null){
+            System.out.println("4) Remove selected algorithm");
+        }
+    	System.out.println("101) go back \n");
         
         int userChoice = userIn.nextInt();
         
         switch (userChoice){
         case 1:
-        	selectAlgorithm(userIn,0);
+        	if(currentSelected!=null){
+            	selectAlgorithm(userIn,0);
+        	}
         	break;
         case 2:
         	addAlgorithm(userIn,0);
@@ -56,10 +63,15 @@ public class LearnOptions {
         	editParameters(userIn,0);
         	break;
         case 4:
-        	//cycles through loaded streams and sets it as the stream to learn from
-        	break;
-        case 5:
-        	//cycles through loaded streams and sets it as the stream to test from
+        	if(currentSelected!=null){
+        		userSelectedClassifiers.remove(currentSelected);
+            	if(!userSelectedClassifiers.isEmpty()){
+            		currentSelected=userSelectedClassifiers.get(0);
+            	}
+            	else{
+            		currentSelected=null;
+            	}
+        	}
         	break;
         case 101:
         	exit=true;
@@ -126,6 +138,7 @@ public class LearnOptions {
 				userSelectedClassifiers.add(classifiers.get(selectionIdx).getClass().newInstance());} 
     		catch (InstantiationException e) {e.printStackTrace();System.out.println(e.getMessage());}
     		catch (IllegalAccessException e) {e.printStackTrace();System.out.println(e.getMessage());}
+    		currentSelected=userSelectedClassifiers.get(userSelectedClassifiers.size()-1);
     		exit=true;
     		break;
     	case "w":
