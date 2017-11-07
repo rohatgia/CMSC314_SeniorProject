@@ -32,7 +32,7 @@ public class CS314Menu{
         	break;
         case 3:
         	initializeStreams();
-        	tasks.doTask();
+        	tempDoTask();
         	System.out.println("Task Complete");
         	break;
         }
@@ -43,8 +43,12 @@ public class CS314Menu{
     }
     
     private void initializeProgram(){
-    	
     	tasks.chunkSizeOption.setValue(1);
     	tasks.learnerOption.setCurrentObject(buildTask.learnOptions.classifiers.get(0));
+    }
+    
+    private void tempDoTask(){
+    	TestModule TestM= new TestModule(this.buildTask.learnOptions.currentSelected, this.configureStreams.testingStream);
+    	TrainModule TrainM= new TrainModule(this.buildTask.learnOptions.currentSelected, this.configureStreams.learningStream);
     }
 }

@@ -8,7 +8,7 @@ import moa.classifiers.*;
 import moa.options.AbstractOptionHandler;
 
 public class LearnOptions {
-	private AbstractClassifier currentSelected;
+	public AbstractClassifier currentSelected;
 	public static ArrayList <AbstractClassifier> classifiers = new ArrayList<AbstractClassifier>(); //arraylist of classifiers currently supported by our program
 	public static ArrayList <AbstractClassifier> userSelectedClassifiers= new ArrayList<AbstractClassifier>(); //arraylist of the user selected algorithms that they want in their workspace
 	
