@@ -13,6 +13,7 @@ public class LearnOptions {
 	public static ArrayList <AbstractClassifier> userSelectedClassifiers= new ArrayList<AbstractClassifier>(); //arraylist of the user selected algorithms that they want in their workspace
 	
 	LearnOptions(){
+		classifiers.add(new moa.classifiers.bayes.NaiveBayes());
 		classifiers.add(new moa.classifiers.trees.HoeffdingAdaptiveTree());
 		classifiers.add(new moa.classifiers.functions.Perceptron());
 		
@@ -20,7 +21,6 @@ public class LearnOptions {
 		} catch (InstantiationException e) {e.printStackTrace(); System.out.println(e.getMessage());
 		} catch (IllegalAccessException e) {e.printStackTrace(); System.out.println(e.getMessage());}
 		currentSelected = userSelectedClassifiers.get(0);
-		
 	}
 	
     public void displayMenu(){
@@ -42,7 +42,7 @@ public class LearnOptions {
         	System.out.println("1) Selected Algorithm: " + currentSelected.getClass().toString());
         }
         System.out.println("2) Add Algorithm to workspace \n" +
-                           "3) Edit Parameters \n");
+                           "3) Edit Parameters");
         if(currentSelected!=null){
             System.out.println("4) Remove selected algorithm");
         }

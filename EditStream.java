@@ -5,7 +5,7 @@ public class EditStream {
 	private int batchSize=1;
 	
 	EditStream(){
-		ArffFileStream currentStream = ConfigureStream.streamList.get(0);
+		
 	}
 	
     public void displayMenu(){

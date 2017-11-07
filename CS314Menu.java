@@ -7,7 +7,7 @@ import moa.tasks.EvaluateInterleavedChunks;
 public class CS314Menu{
 	public static ConfigureStream configureStreams = new ConfigureStream();
 	public static BuildTask buildTask = new BuildTask();
-	public static ArrayList <EvaluateInterleavedChunks> tasks = new ArrayList();
+	public static EvaluateInterleavedChunks tasks = new EvaluateInterleavedChunks();
 	
     public static void main(String[] args){
     	CS314Menu mainMenu= new CS314Menu();
@@ -32,22 +32,19 @@ public class CS314Menu{
         	break;
         case 3:
         	initializeStreams();
-        	tasks.get(0).doTask(); //for now we are only worried about exectuing a single task at a time
+        	tasks.doTask();
         	System.out.println("Task Complete");
         	break;
         }
     }
     
     private void initializeStreams(){
-		for( EvaluateInterleavedChunks t: this.tasks){
-			t.prepareForUse();
-		}
+			tasks.prepareForUse();
     }
     
     private void initializeProgram(){
-    	tasks.add(new EvaluateInterleavedChunks());
-    	tasks.get(0).chunkSizeOption.setValue(1);
-    	buildTask.learnOptions.classifiers.add(new NaiveBayes());
-    	tasks.get(0).learnerOption.setCurrentObject(buildTask.learnOptions.classifiers.get(0));
+    	
+    	tasks.chunkSizeOption.setValue(1);
+    	tasks.learnerOption.setCurrentObject(buildTask.learnOptions.classifiers.get(0));
     }
 }
