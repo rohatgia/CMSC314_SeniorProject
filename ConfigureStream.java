@@ -11,7 +11,7 @@ import moa.streams.ArffFileStream;
 public class ConfigureStream {
 	public static EditStream editStream= new EditStream();
 	public static ArrayList<ArffFileStream> streamList = new ArrayList<ArffFileStream>();
-	public static ArffFileStream selectedStream = new ArffFileStream();
+	public static ArffFileStream selectedStream;
 	public static ArffFileStream learningStream = new ArffFileStream();
 	public static ArffFileStream testingStream = new ArffFileStream();
 	//we will need a stream variable that represents the current selected stream, this variable will be useful/accesible in many menus
@@ -26,8 +26,11 @@ public class ConfigureStream {
     	 * Display the contents of the Stream arraylist menu here
     	 */
         Scanner userIn = new Scanner(System.in);
-        System.out.println("Please enter a menu option: \n" +
-                           "1) Select Stream \n" +
+        System.out.println("Please enter a menu option: \n");
+        if(selectedStream!=null){
+            System.out.println("1) Selected Stream "+ selectedStream.arffFileOption.getFile().getName());
+        }
+        System.out.println(
                            "2) Add Stream to workspace \n" +
                            "3) Edit Selected Stream \n" +
                            "4) Export Selected Stream \n" +
@@ -71,10 +74,10 @@ public class ConfigureStream {
     	
     	for(int i=0; i<streamList.size();i++){
     		if(i==selectionIdx){
-    			System.out.println(streamList.get(i).arffFileOption.getName().toString() +"  <<<");
+    			System.out.println(streamList.get(i).arffFileOption.getFile().getName() +"  <<<");
     		}
     		else{
-    			System.out.println(streamList.get(i).arffFileOption.getName().toString());
+    			System.out.println(streamList.get(i).arffFileOption.getFile().getName());
     		}
     	}
     	System.out.println("press 'e' to select or 'w'/'s' to scroll");
@@ -135,5 +138,9 @@ public class ConfigureStream {
 		int cIdx = userIn.nextInt();
 		ArffFileStream fileStream = new ArffFileStream(fileName, cIdx);
 		streamList.add(fileStream);
+		
+		if(selectedStream==null){
+			selectedStream=streamList.get(0);
+		}
     }
 }
