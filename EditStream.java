@@ -3,13 +3,12 @@ import moa.streams.ArffFileStream;
 
 public class EditStream {
 	private int batchSize=1;
-	
+	boolean exit= false;
 	EditStream(){
 		
 	}
 	
     public void displayMenu(){
-    	boolean exit= false;
         Scanner userIn = new Scanner(System.in);
         System.out.println("Please enter a menu option: \n" +
                            "1) Rename Selected Stream \n" +
@@ -45,7 +44,11 @@ public class EditStream {
             	}
         	}
         	exit=true;
-        	break;   
+        	break;
+
+        case 101:
+        	exit=true;
+        	break;
         }
         
         if(!exit){

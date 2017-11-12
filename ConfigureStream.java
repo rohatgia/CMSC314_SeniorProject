@@ -12,8 +12,8 @@ public class ConfigureStream {
 	public static EditStream editStream= new EditStream();
 	public static ArrayList<ArffFileStream> streamList = new ArrayList<ArffFileStream>();
 	public static ArffFileStream selectedStream;
-	public static ArffFileStream learningStream = new ArffFileStream();
-	public static ArffFileStream testingStream = new ArffFileStream();
+	public static ArffFileStream learningStream;
+	public static ArffFileStream testingStream;
 	public static int totalInstances=0;
 	//we will need a stream variable that represents the current selected stream, this variable will be useful/accesible in many menus
 	
@@ -34,10 +34,22 @@ public class ConfigureStream {
         System.out.println(
                            "2) Add Stream to workspace \n" +
                            "3) Edit Selected Stream \n" +
-                           "4) Export Selected Stream \n" +
-                           "5) Set Learning Stream "+ this.learningStream.arffFileOption.getFile().getName()+ " \n" +
-                           "6) Set Testing Stream "+ this.learningStream.arffFileOption.getFile().getName()+ " \n" +
-                           "7) Set total Instances to stream " + this.totalInstances + "\n" +
+                           "4) Export Selected Stream");
+                           if(this.learningStream==null){
+                        	   System.out.println("5) Set Learning Stream ");
+                           }
+                           else{
+                        	   System.out.println("5) Set Learning Stream "+ this.learningStream.arffFileOption.getFile().getName());
+                           }
+                           if(this.testingStream==null){
+                        	   System.out.println("5) Set Testing Stream ");
+                           }
+                           else{
+                        	   System.out.println("6) Set Testing Stream "+ this.testingStream.arffFileOption.getFile().getName());
+                           }
+                           
+                           
+                           System.out.println("7) Set total Instances to stream " + this.totalInstances + "\n" +
                            "101) Go Back");
         int userChoice = userIn.nextInt();
         switch (userChoice){
