@@ -33,17 +33,8 @@ public class TestModule {
 	}
 	
 	private double extractPrediction(AbstractClassifier olr, Instance instance){ 
-		double[] instanceConfidence= new double[this.stream.getHeader().numClasses()]; //creates an array to store results of the model
-		String prediction=olr.getPredictionForInstance(instance).toString().substring(6);
-		Scanner extractor=new Scanner(prediction);
+		double[] instanceConfidence= olr.getPredictionForInstance(instance).getVotes();
 		double predictedLabel= 0;
-		
-		
-		for (int i=0; i<instanceConfidence.length;i++){
-			if(extractor.hasNextDouble()){
-				instanceConfidence[i]=extractor.nextDouble();
-			}
-		}
 		
 		double highest = instanceConfidence[0];
 		for(int i=0; i<instanceConfidence.length;i++){
