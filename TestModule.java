@@ -8,11 +8,11 @@ import moa.streams.ArffFileStream;
 
 public class TestModule {
 	boolean first=true;
-	private ArffFileStream stream;
+	private ArrayList <Instance> chunk;
 	private evalBinaryClass eval= new evalBinaryClass();
 	
-	public TestModule(AbstractClassifier classifier, ArffFileStream stream){
-		this.stream=stream;
+	public TestModule(AbstractClassifier classifier, ArrayList<Instance> chunk){
+		this.chunk=chunk;
 	}
 	
 	private void testChunk(AbstractClassifier classifier, ArrayList<Instance> chunk){

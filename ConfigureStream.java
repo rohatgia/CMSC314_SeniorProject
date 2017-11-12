@@ -14,6 +14,7 @@ public class ConfigureStream {
 	public static ArffFileStream selectedStream;
 	public static ArffFileStream learningStream = new ArffFileStream();
 	public static ArffFileStream testingStream = new ArffFileStream();
+	public static int totalInstances=0;
 	//we will need a stream variable that represents the current selected stream, this variable will be useful/accesible in many menus
 	
 	ConfigureStream(){
@@ -34,8 +35,9 @@ public class ConfigureStream {
                            "2) Add Stream to workspace \n" +
                            "3) Edit Selected Stream \n" +
                            "4) Export Selected Stream \n" +
-                           "5) Set Learning Stream \n" +
-                           "6) Set Testing Stream \n" +
+                           "5) Set Learning Stream "+ this.learningStream.arffFileOption.getFile().getName()+ " \n" +
+                           "6) Set Testing Stream "+ this.learningStream.arffFileOption.getFile().getName()+ " \n" +
+                           "7) Set total Instances to stream " + this.totalInstances + "\n" +
                            "101) Go Back");
         int userChoice = userIn.nextInt();
         switch (userChoice){
@@ -58,6 +60,9 @@ public class ConfigureStream {
         	break;
         case 6:
         	testingStream = setStream(userIn, 0);
+        	break;
+        case 7:
+        	totalInstances = userIn.nextInt();
         	break;
         case 101:
         	exit=true;
@@ -109,25 +114,6 @@ public class ConfigureStream {
 		export.streamOption.setCurrentObject(selectedStream);
 		export.outputFileOption.setValue(""); //FILENAME GOES HERE
 		export.doTask();
-		
-/*			
-		System.out.println("Select Stream to export: ");
-		int count = 0;
-		for(ArffFileStream i : streamList){
-			System.out.println(count++ + i.toString());
-		}
-
-		String[] streamDetails = editStream.getStreamDetails(streamList(userIn.nextInt())); //gets current selected stream, gets the streams name as a string, gets the number of iterations from the...
-		//alternatively get all this information from the tasks arraylist in the menu
-		WriteStreamToARFFFFile.streamOption = new ClassOption("stream", 's', "Stream to write", InstaceStream.class, streamDetails[0]);
-		WriteStreamToARFFFFile.arffFileOption = new FileOption("arffFile", 'f', "Destination ARFF file.", streamDetails[1], "arff", true);
-		WriteStreamToARFFFFile.maxInstancesOption = new IntOption("maxInstances", 'm', "Maximum number of instances to write to file.", Integer.parseInt(streamDetails[2]), 0, Integer.MAX_VALUE);
-
-		ObjectRepository repo = new ObjectRepository(); //check parameters
-		TaskMonitor tm = new TaskMonitor(); //check parameter
-		Object retObj = WriteStreamToARFFFFile.doMainTask(tm, repo);
-
-		System.out.println(retObj);*/
     }
     
     public void addStream(Scanner userIn){

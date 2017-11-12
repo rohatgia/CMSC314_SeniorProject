@@ -1,7 +1,10 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import com.yahoo.labs.samoa.instances.Instance;
+
 import moa.classifiers.bayes.NaiveBayes;
+import moa.streams.ArffFileStream;
 import moa.tasks.EvaluateInterleavedChunks;
 
 public class CS314Menu{
@@ -58,7 +61,26 @@ public class CS314Menu{
     }
     
     private void tempDoTask(){
-    	TestModule TestM= new TestModule(this.buildTask.learnOptions.currentSelected, this.configureStreams.testingStream);
-    	TrainModule TrainM= new TrainModule(this.buildTask.learnOptions.currentSelected, this.configureStreams.learningStream);
+    	for(int i=0; i < configureStreams.totalInstances / configureStreams.editStream.getBatchSize(); i++){
+    		
+    		/*
+    		 * TRAIN
+    		 */
+    		TrainModule TrainM= new TrainModule(this.buildTask.learnOptions.currentSelected, makeChunks(this.configureStreams.learningStream));
+    		
+    		/*
+    		 * TEST
+    		 */
+    		TestModule TestM= new TestModule(this.buildTask.learnOptions.currentSelected, makeChunks(this.configureStreams.testingStream));
+    	}
+    	
+    }
+    
+    private ArrayList<Instance> makeChunks(ArffFileStream stream){
+    	ArrayList<Instance> newChunk= new ArrayList<Instance>();
+    	for(int i=0; i<configureStreams.editStream.getBatchSize(); i++){
+    		newChunk.add(stream.nextInstance().instance);
+    	}
+		return newChunk;
     }
 }

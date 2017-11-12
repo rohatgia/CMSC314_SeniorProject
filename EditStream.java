@@ -29,7 +29,6 @@ public class EditStream {
         	break;
         case 2:
 			//Remove Attributes Tool
-			//is this supposed to call the arraylist in CS314Menu? Which attributes are we editing, the number of iterations and such? or other arff stream attributes
         	break;
         case 3:
         	setBatchSize(userIn.nextInt());
@@ -58,18 +57,10 @@ public class EditStream {
      * BatchSize Setter/Getter
      * Allows user to retrieve and set the batch size
      */
-	private int getBatchSize() {
+	public int getBatchSize() {
 		return this.batchSize;
 	}
-	public void setBatchSize(int batchSize){
+	private void setBatchSize(int batchSize){
 		this.batchSize=batchSize;
 	}
-
-	/*
-	public String[] getStreamDetails(ArffFileStream stream){
-		String[] attributes = getAttributes(stream);
-		String[] retArr = new String[1];
-		return retArr;
-		//placeholder method
-	} */
 }
