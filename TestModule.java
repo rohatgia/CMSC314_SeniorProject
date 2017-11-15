@@ -9,10 +9,11 @@ import moa.streams.ArffFileStream;
 public class TestModule {
 	boolean first=true;
 	private ArrayList <Instance> chunk;
-	private evalBinaryClass eval= new evalBinaryClass();
+	private eval eval= new eval();
 	
 	public TestModule(AbstractClassifier classifier, ArrayList<Instance> chunk){
 		this.chunk=chunk;
+		testChunk(classifier, chunk);
 	}
 	
 	private void testChunk(AbstractClassifier classifier, ArrayList<Instance> chunk){
@@ -27,8 +28,9 @@ public class TestModule {
 				else{
 					eval.totalPredicted++;
 				}
-				first=false;
+				first = false;
 			}
+			first = false;
 		}
 	}
 	
@@ -52,7 +54,7 @@ public class TestModule {
 /*
  * need to be able to use confusion matrix meausures instead of total correct/incorrect 
  */
-class evalBinaryClass{
+class eval{
 	public double totalCorrect=0;
 	public double totalPredicted=0;
 	public double truePositive=0;
@@ -60,7 +62,7 @@ class evalBinaryClass{
 	public double falsePositive=0;
 	public double falseNegative=0;
 	
-	public evalBinaryClass(){
+	public eval(){
 		truePositive=0;
 		trueNegative=0;
 		falsePositive=0;

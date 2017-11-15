@@ -61,8 +61,10 @@ public class CS314Menu{
     }
     
     private void tempDoTask(){
+    	buildTask.learnOptions.currentSelected.prepareForUse();
+    	
     	for(int i=0; i < configureStreams.totalInstances / configureStreams.editStream.getBatchSize(); i++){
-    		
+    	
     		/*
     		 * TRAIN
     		 */
@@ -72,8 +74,7 @@ public class CS314Menu{
     		 * TEST
     		 */
     		TestModule TestM= new TestModule(this.buildTask.learnOptions.currentSelected, makeChunks(this.configureStreams.testingStream));
-    	}
-    	
+    	}	
     }
     
     private ArrayList<Instance> makeChunks(ArffFileStream stream){

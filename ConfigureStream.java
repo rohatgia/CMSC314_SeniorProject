@@ -42,7 +42,7 @@ public class ConfigureStream {
                         	   System.out.println("5) Set Learning Stream "+ this.learningStream.arffFileOption.getFile().getName());
                            }
                            if(this.testingStream==null){
-                        	   System.out.println("5) Set Testing Stream ");
+                        	   System.out.println("6) Set Testing Stream ");
                            }
                            else{
                         	   System.out.println("6) Set Testing Stream "+ this.testingStream.arffFileOption.getFile().getName());
