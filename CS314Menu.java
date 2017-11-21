@@ -67,6 +67,7 @@ public class CS314Menu{
     	for(int i=0; i < configureStreams.totalInstances / configureStreams.editStream.getBatchSize(); i++){
     		ArrayList<Instance> trainChunk = makeChunks(this.configureStreams.learningStream);
     		ArrayList<Instance> testChunk = makeChunks(this.configureStreams.testingStream);
+    		
     		/*
     		 *FILTER 
     		 */
