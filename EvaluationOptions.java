@@ -1,5 +1,7 @@
 import java.util.Scanner;
 
+import com.yahoo.labs.samoa.instances.Instance;
+
 public class EvaluationOptions {
 	public static double TP=0; //true positive
 	public static double TN=0; //true negative
@@ -31,4 +33,44 @@ public class EvaluationOptions {
         	break;
         	}
     }
+    
+    /*
+     * k-Disagreeing Neighbors (kDN)
+     * kDN measures the local overlap of an instance in the original task space in relation to its nearest neighbors
+     * The kDN of an instance is the percentage of the k nearest neighbors (using Euclidean distance) for an instance that do not share its target class value.
+     */
+    public double kDN(Instance inst, int k, int limit){
+    	double[] votes;
+    	int disagreeing = 0;
+    	moa.classifiers.lazy.kNN kNN= new moa.classifiers.lazy.kNN();
+    	kNN.kOption.setValue(k);
+    	kNN.limitOption.setValue(limit);
+    	votes = kNN.getVotesForInstance(inst);
+    	for(int i=0; i<votes.length; i++){
+    		if(inst.classValue()!=i){
+    			disagreeing += k*votes[i]; //number of instances that are not the target class
+    		}
+    	}
+    	return disagreeing/k;
+    }
+    
+    /*
+     * Disjunct Size (DS)
+     * DS measures how tightly a learning algorithm has to divide the task space to correctly classify an instance and the complexity of the decision boundary
+     * Some learning algorithms, such as decision trees and rule-based learning algorithms, can express the learned concept as a disjunctive description.
+     * Thus, the DS of an instance is the number of instances in a disjunct divided by the number of instances covered by the largest disjunct in a dataset.
+     */
+    public void dS(Instance inst){
+    	
+    }
+    
+    /*
+     * DCP measures the overlap of an instance on a subset of features. using a pruned C4.5 tree.
+     * The DCP of an instance is the number of instances in a disjunct belonging to tits class divided by the total number of instances in the disjunct
+     * 
+     */
+    public void dCP(){
+    	
+    }
+    
 }
