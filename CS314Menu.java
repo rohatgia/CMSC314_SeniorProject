@@ -11,6 +11,7 @@ public class CS314Menu{
 	public static ConfigureStream configureStreams = new ConfigureStream();
 	public static BuildTask buildTask = new BuildTask();
 	public static EvaluateInterleavedChunks tasks = new EvaluateInterleavedChunks();
+	public static boolean modelTrained=false;
 	
     public static void main(String[] args){
     	CS314Menu mainMenu= new CS314Menu();
@@ -64,16 +65,18 @@ public class CS314Menu{
     	buildTask.learnOptions.currentSelected.prepareForUse();
     	
     	for(int i=0; i < configureStreams.totalInstances / configureStreams.editStream.getBatchSize(); i++){
-    	
+    		ArrayList<Instance> trainChunk = makeChunks(this.configureStreams.learningStream);
+    		ArrayList<Instance> testChunk = makeChunks(this.configureStreams.testingStream);
+    		
     		/*
     		 * TRAIN
     		 */
-    		TrainModule TrainM= new TrainModule(this.buildTask.learnOptions.currentSelected, makeChunks(this.configureStreams.learningStream));
+    		TrainModule TrainM= new TrainModule(this.buildTask.learnOptions.currentSelected, trainChunk);
     		
     		/*
     		 * TEST
     		 */
-    		TestModule TestM= new TestModule(this.buildTask.learnOptions.currentSelected, makeChunks(this.configureStreams.testingStream));
+    		TestModule TestM= new TestModule(this.buildTask.learnOptions.currentSelected, testChunk);
     	}	
     }
     
@@ -83,5 +86,9 @@ public class CS314Menu{
     		newChunk.add(stream.nextInstance().instance);
     	}
 		return newChunk;
+    }
+    
+    public boolean getTrained(){
+    	return this.modelTrained;
     }
 }

@@ -7,7 +7,6 @@ import moa.classifiers.AbstractClassifier;
 import moa.streams.ArffFileStream;
 
 public class TestModule {
-	boolean first=true;
 	private ArrayList <Instance> chunk;
 	private eval eval= new eval();
 	
@@ -20,7 +19,7 @@ public class TestModule {
 		for(int chunkInst=0; chunkInst < CS314Menu.tasks.chunkSizeOption.getValue(); chunkInst++){
 			Instance newInstance = chunk.get(chunkInst); //grabs the next instance from the TRUE Stream
 			//Tests the instance and run statistics
-			if(!first){
+			if(!CS314Menu.modelTrained){
 				if(extractPrediction(classifier,newInstance) == newInstance.classValue()){
 					eval.totalCorrect++;
 					eval.totalPredicted++;
@@ -28,14 +27,14 @@ public class TestModule {
 				else{
 					eval.totalPredicted++;
 				}
-				first = false;
+				CS314Menu.modelTrained = false;
 			}
-			first = false;
+			CS314Menu.modelTrained = false;
 		}
 	}
 	
 	private double extractPrediction(AbstractClassifier olr, Instance instance){ 
-		double[] instanceConfidence= olr.getPredictionForInstance(instance).getVotes();
+		double[] instanceConfidence = olr.getPredictionForInstance(instance).getVotes();
 		double predictedLabel= 0;
 		
 		double highest = instanceConfidence[0];

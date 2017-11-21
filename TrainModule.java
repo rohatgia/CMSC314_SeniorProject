@@ -11,5 +11,8 @@ public class TrainModule {
 		for(int i=0; i<chunk.size(); i++){
 			classifier.trainOnInstance(chunk.get(i));
 		}
+		if(CS314Menu.modelTrained==false){
+			CS314Menu.modelTrained = true;
+		}
 	}
 }
