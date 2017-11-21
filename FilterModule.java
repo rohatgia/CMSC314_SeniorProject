@@ -10,7 +10,7 @@ public class FilterModule {
 	Random theClaw = new Random();
 	ArrayList <AbstractClassifier> ensemble = new ArrayList<AbstractClassifier>();
 	
-	private ArrayList<Instance> filterChunk(ArrayList <Instance> chunk) throws InstantiationException, IllegalAccessException{
+	public ArrayList<Instance> filterChunk(ArrayList <Instance> chunk) throws InstantiationException, IllegalAccessException{
 		ArrayList <Instance> trainedChunk = new ArrayList<Instance>();
 		ArrayList <Instance> filteredChunk = new ArrayList<Instance>();
 		

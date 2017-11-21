@@ -13,13 +13,13 @@ public class CS314Menu{
 	public static EvaluateInterleavedChunks tasks = new EvaluateInterleavedChunks();
 	public static boolean modelTrained=false;
 	
-    public static void main(String[] args){
+    public static void main(String[] args) throws InstantiationException, IllegalAccessException{
     	CS314Menu mainMenu= new CS314Menu();
     	mainMenu.initializeProgram();
     	mainMenu.displayMenu();
     }
     
-    public void displayMenu(){
+    public void displayMenu() throws InstantiationException, IllegalAccessException{
     	boolean exit=false;
         Scanner userIn = new Scanner(System.in);
         System.out.println("Please enter a menu option: \n" +
@@ -61,12 +61,19 @@ public class CS314Menu{
     	tasks.learnerOption.setCurrentObject(buildTask.learnOptions.classifiers.get(0));
     }
     
-    private void tempDoTask(){
+    private void tempDoTask() throws InstantiationException, IllegalAccessException{
     	buildTask.learnOptions.currentSelected.prepareForUse();
     	
     	for(int i=0; i < configureStreams.totalInstances / configureStreams.editStream.getBatchSize(); i++){
     		ArrayList<Instance> trainChunk = makeChunks(this.configureStreams.learningStream);
     		ArrayList<Instance> testChunk = makeChunks(this.configureStreams.testingStream);
+    		/*
+    		 *FILTER 
+    		 */
+    		/*
+    		FilterModule filterM = new FilterModule();
+    		trainChunk = filterM.filterChunk(trainChunk);
+    		*/
     		
     		/*
     		 * TRAIN
