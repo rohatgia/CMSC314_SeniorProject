@@ -6,7 +6,7 @@ import com.yahoo.labs.samoa.instances.Instance;
 import moa.classifiers.AbstractClassifier;
 
 public class FilterModule {
-	int sizeOfEnsemble=0;
+	int sizeOfEnsemble=10;
 	Random theClaw = new Random();
 	ArrayList <AbstractClassifier> ensemble = new ArrayList<AbstractClassifier>();
 	
@@ -45,6 +45,7 @@ public class FilterModule {
 			nextInst.setClassValue(prediction); //Correct the class value
 			filteredChunk.add(nextInst);
 		}
+		
 		return filteredChunk;
 	}
 	

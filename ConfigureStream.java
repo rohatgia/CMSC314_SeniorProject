@@ -1,5 +1,11 @@
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import com.yahoo.labs.samoa.instances.Instance;
+
 import moa.tasks.*;
 import moa.streams.ArffFileStream;
 
@@ -65,6 +71,7 @@ public class ConfigureStream {
         	break;
         case 4:
         	//export stream Tool
+        	//TODO here
         	exportStream();
         	break;
         case 5:
@@ -120,13 +127,29 @@ public class ConfigureStream {
 		return null;
     }
     
-    public void exportStream(){
+    public void exportStream(ArrayList <Instance> output) throws IOException{
+    	String fileName="";
+    	Scanner scan= new Scanner(System.in);
+    	fileName= scan.nextLine();
     	
-		WriteStreamToARFFFile export = new WriteStreamToARFFFile();
-		export.streamOption.setCurrentObject(selectedStream);
-		export.outputFileOption.setValue(""); //FILENAME GOES HERE
-		export.doTask();
+    	FileWriter writer = new FileWriter(new File(fileName));
+		//write header
+		writer.write(this.selectedStream.getHeader().toString());
+		
+		//write delimited data
+		for(int i = 0; i < output.size(); i++){
+			String s = output.get(i).toString();
+			scan = new Scanner(s);
+			scan.useDelimiter(",");
+			while(scan.hasNext()){
+				String n= scan.next() + ",";
+				writer.write(n);
+				writer.flush();
+			}
+			System.out.print("\n");
+		}
     }
+    
     
     public void addStream(Scanner userIn){
 

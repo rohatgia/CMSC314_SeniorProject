@@ -1,7 +1,12 @@
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 import com.yahoo.labs.samoa.instances.Instance;
+import com.yahoo.labs.samoa.instances.Instances;
 
 import moa.classifiers.bayes.NaiveBayes;
 import moa.streams.ArffFileStream;
@@ -66,27 +71,38 @@ public class CS314Menu{
     	
     	for(int i=0; i < configureStreams.totalInstances / configureStreams.editStream.getBatchSize(); i++){
     		ArrayList<Instance> trainChunk = makeChunks(this.configureStreams.learningStream);
-    		ArrayList<Instance> testChunk = makeChunks(this.configureStreams.testingStream);
+    		//ArrayList<Instance> testChunk = makeChunks(this.configureStreams.testingStream);
     		
     		/*
     		 *FILTER 
     		 */
-    		/*
     		FilterModule filterM = new FilterModule();
     		trainChunk = filterM.filterChunk(trainChunk);
-    		*/
+    		
+    		try {
+				temp_export_DataSet("FilteredTraa", trainChunk);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
     		
     		/*
     		 * TRAIN
     		 */
-    		TrainModule TrainM= new TrainModule(this.buildTask.learnOptions.currentSelected, trainChunk);
+    		//TrainModule TrainM= new TrainModule(this.buildTask.learnOptions.currentSelected, trainChunk);
+    		
     		
     		/*
     		 * TEST
     		 */
-    		TestModule TestM= new TestModule(this.buildTask.learnOptions.currentSelected, testChunk);
+    		//TestModule TestM= new TestModule(this.buildTask.learnOptions.currentSelected, testChunk);
+    		
     	}	
     }
+    
+	public void temp_export_DataSet(String outputFileName, ArrayList <Instance> output) throws IOException{ //TODO I can make this more generic using array of Instance instead
+		
+	}
     
     private ArrayList<Instance> makeChunks(ArffFileStream stream){
     	ArrayList<Instance> newChunk= new ArrayList<Instance>();
