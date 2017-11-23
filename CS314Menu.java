@@ -18,13 +18,13 @@ public class CS314Menu{
 	public static EvaluateInterleavedChunks tasks = new EvaluateInterleavedChunks();
 	public static boolean modelTrained=false;
 	
-    public static void main(String[] args) throws InstantiationException, IllegalAccessException{
+    public static void main(String[] args) throws InstantiationException, IllegalAccessException, IOException{
     	CS314Menu mainMenu= new CS314Menu();
     	mainMenu.initializeProgram();
     	mainMenu.displayMenu();
     }
     
-    public void displayMenu() throws InstantiationException, IllegalAccessException{
+    public void displayMenu() throws InstantiationException, IllegalAccessException, IOException{
     	boolean exit=false;
         Scanner userIn = new Scanner(System.in);
         System.out.println("Please enter a menu option: \n" +

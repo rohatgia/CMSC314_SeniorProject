@@ -27,7 +27,7 @@ public class ConfigureStream {
 		
 	}
 	
-    public void displayMenu(){
+    public void displayMenu() throws IOException{
     	boolean exit=false;
     	/*
     	 * Display the contents of the Stream arraylist menu here
@@ -71,8 +71,11 @@ public class ConfigureStream {
         	break;
         case 4:
         	//export stream Tool
-        	//TODO here
-        	exportStream();
+        	ArrayList<Instance> Instances= new ArrayList<Instance>();
+        	for(int i=0; i<this.totalInstances; i++){
+        		Instances.add(selectedStream.nextInstance().instance);
+        	}
+        	exportStream(Instances);
         	break;
         case 5:
         	learningStream = setStream(userIn, 0);
