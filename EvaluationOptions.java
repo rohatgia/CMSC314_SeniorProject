@@ -61,7 +61,8 @@ public class EvaluationOptions {
      * Thus, the DS of an instance is the number of instances in a disjunct divided by the number of instances covered by the largest disjunct in a dataset.
      */
     public void dS(Instance inst){
-    	
+    	moa.classifiers.trees.HoeffdingAdaptiveTree hat = new moa.classifiers.trees.HoeffdingAdaptiveTree();
+    	//hat.leafpredictionOption.
     }
     
     /*

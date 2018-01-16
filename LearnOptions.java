@@ -16,6 +16,7 @@ public class LearnOptions {
 		classifiers.add(new moa.classifiers.bayes.NaiveBayes());
 		classifiers.add(new moa.classifiers.trees.HoeffdingAdaptiveTree());
 		classifiers.add(new moa.classifiers.functions.Perceptron());
+		classifiers.add(new moa.classifiers.trees.HoeffdingAdaptiveTree());
 		
 		try {userSelectedClassifiers.add(classifiers.get(0).getClass().newInstance());
 		} catch (InstantiationException e) {e.printStackTrace(); System.out.println(e.getMessage());

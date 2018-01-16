@@ -76,15 +76,8 @@ public class CS314Menu{
     		/*
     		 *FILTER 
     		 */
-    		FilterModule filterM = new FilterModule();
-    		trainChunk = filterM.filterChunk(trainChunk);
-    		
-    		try {
-				temp_export_DataSet("0_1_Filtered", trainChunk);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+    		//FilterModule filterM = new FilterModule();
+    		//trainChunk = filterM.filterChunk(trainChunk);
     		
     		/*
     		 * TRAIN
