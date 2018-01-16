@@ -6,7 +6,7 @@ import com.yahoo.labs.samoa.instances.Instance;
 import moa.classifiers.AbstractClassifier;
 
 public class FilterModule {
-	int sizeOfEnsemble=10;
+	int sizeOfEnsemble=2;
 	Random theClaw = new Random();
 	ArrayList <AbstractClassifier> ensemble = new ArrayList<AbstractClassifier>();
 	
@@ -51,6 +51,7 @@ public class FilterModule {
 	
 	private double extractPrediction(AbstractClassifier olr, Instance instance){ 
 		double[] instanceConfidence = olr.getPredictionForInstance(instance).getVotes();
+		String instanceConfidence2 = olr.getPredictionForInstance(instance).toString();
 		double predictedLabel= 0;
 		
 		double highest = instanceConfidence[0];
@@ -69,7 +70,7 @@ public class FilterModule {
 			ArrayList <Instance> partition=new ArrayList<Instance>();
 			
 			//build the partition
-			for(int j=0; j<CS314Menu.configureStreams.editStream.getBatchSize()/sizeOfEnsemble; j++){
+			for(int j=0; j<chunk.size()/sizeOfEnsemble; j++){
 				//randomly remove instances from the chunk so that each partition is random/shuffled instances of the chunk
 				int r = theClaw.nextInt(chunk.size()); //choose next instance based on size of the list of instances that havnt been chosen.
 				partition.add(chunk.get(r)); //add the Instance to the partition
@@ -97,4 +98,6 @@ public class FilterModule {
 		}
 		return ensemble;
 	}
+	
+	
 }
