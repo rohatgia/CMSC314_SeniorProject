@@ -8,24 +8,37 @@ import moa.streams.ArffFileStream;
 
 public class TestModule {
 	private ArrayList <Instance> chunk;
-	private eval eval= new eval();
+	EvaluationOptions eval=null;
 	
-	public TestModule(AbstractClassifier classifier, ArrayList<Instance> chunk){
+	public TestModule(AbstractClassifier classifier, ArrayList<Instance> chunk, EvaluationOptions eval){
 		this.chunk=chunk;
 		testChunk(classifier, chunk);
+		this.eval=eval;
 	}
 	
 	private void testChunk(AbstractClassifier classifier, ArrayList<Instance> chunk){
-		for(int chunkInst=0; chunkInst < CS314Menu.tasks.chunkSizeOption.getValue(); chunkInst++){
+		for(int chunkInst=0; chunkInst < chunk.size(); chunkInst++){
 			Instance newInstance = chunk.get(chunkInst); //grabs the next instance from the TRUE Stream
 			//Tests the instance and run statistics
 			if(!CS314Menu.modelTrained){
-				if(extractPrediction(classifier,newInstance) == newInstance.classValue()){
-					eval.totalCorrect++;
-					eval.totalPredicted++;
+				
+				//TODO THESE EVALUATION OPTIONS ARE WRONG BUT ARE PLACEHOLDERS FOR NOW
+				double prediction = extractPrediction(classifier, newInstance);
+				if(prediction == newInstance.classValue()){
+					if(newInstance.classValue()==0.0){
+						eval.TP++;
+					}
+					else{
+						eval.TN++;
+					}
 				}
 				else{
-					eval.totalPredicted++;
+					if(prediction==0){
+						eval.FP++;
+					}
+					else{
+						eval.FN++;
+					}
 				}
 				CS314Menu.modelTrained = false;
 			}
@@ -48,25 +61,4 @@ public class TestModule {
 	}
 	
 
-}
-
-/*
- * need to be able to use confusion matrix meausures instead of total correct/incorrect 
- */
-class eval{
-	public double totalCorrect=0;
-	public double totalPredicted=0;
-	public double truePositive=0;
-	public double trueNegative=0;
-	public double falsePositive=0;
-	public double falseNegative=0;
-	
-	public eval(){
-		truePositive=0;
-		trueNegative=0;
-		falsePositive=0;
-		falseNegative=0;
-		totalCorrect=0;
-	}
-	
 }

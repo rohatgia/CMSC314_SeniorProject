@@ -68,10 +68,12 @@ public class CS314Menu{
     
     private void tempDoTask() throws InstantiationException, IllegalAccessException{
     	buildTask.learnOptions.currentSelected.prepareForUse();
+    	ArrayList<Instance> trainedChunk = new ArrayList<Instance>();
+    	TestModule TestM = null;
     	
     	for(int i=0; i < configureStreams.totalInstances / configureStreams.editStream.getBatchSize(); i++){
-    		ArrayList<Instance> trainChunk = makeChunks(this.configureStreams.learningStream);
-    		//ArrayList<Instance> testChunk = makeChunks(this.configureStreams.testingStream);
+    		ArrayList<Instance> trainChunk = makeChunks(this.configureStreams.learningStream);	
+    		ArrayList<Instance> testChunk = makeChunks(this.configureStreams.testingStream);
     		
     		/*
     		 *FILTER 
@@ -82,15 +84,29 @@ public class CS314Menu{
     		/*
     		 * TRAIN
     		 */
-    		//TrainModule TrainM= new TrainModule(this.buildTask.learnOptions.currentSelected, trainChunk);
+    		TrainModule TrainM= new TrainModule(this.buildTask.learnOptions.currentSelected, trainChunk);
     		
     		
     		/*
     		 * TEST
     		 */
-    		//TestModule TestM= new TestModule(this.buildTask.learnOptions.currentSelected, testChunk);
+    		TestM= new TestModule(this.buildTask.learnOptions.currentSelected, testChunk,this.buildTask.evaluationOptions);
     		
-    	}	
+    		for(Instance inst: trainChunk){
+    			trainedChunk.add(inst);
+    		}
+    		
+    		/*
+    		 * Find Disjunct size
+    		 */
+    		//buildTask.evaluationOptions.dS(trainChunk.get(trainChunk.size(), trainedChunk));
+    	}
+    	System.out.println();
+    	System.out.println("EVALUATION METRICS");
+    	if(buildTask.evaluationOptions.accuracyOption){
+    		System.out.println("ACC: "+buildTask.evaluationOptions.extractAccuracy() );
+    	}
+    	System.out.println("----------------------");
     }
     
 	public void temp_export_DataSet(String outputFileName, ArrayList <Instance> output) throws IOException{ //TODO I can make this more generic using array of Instance instead

@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import com.yahoo.labs.samoa.instances.Instance;
@@ -15,6 +16,10 @@ public class EvaluationOptions {
 	
 	EvaluationOptions(){
 		
+	}
+	public double extractAccuracy(){
+		ACC=((TP+TN)/(TP+TN+FP+FN));
+		return ACC;
 	}
 	
     public void displayMenu(){
@@ -60,7 +65,7 @@ public class EvaluationOptions {
      * Some learning algorithms, such as decision trees and rule-based learning algorithms, can express the learned concept as a disjunctive description.
      * Thus, the DS of an instance is the number of instances in a disjunct divided by the number of instances covered by the largest disjunct in a dataset.
      */
-    public void dS(Instance inst){
+    public void dS(Instance inst, ArrayList<Instance> currentRecievedData){
     	moa.classifiers.trees.HoeffdingAdaptiveTree hat = new moa.classifiers.trees.HoeffdingAdaptiveTree();
     	//hat.leafpredictionOption.
     }
