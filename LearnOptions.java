@@ -15,10 +15,9 @@ public class LearnOptions {
 
 	//create ensemble options with default values
 	private static Pair<String,String> option0 = new Pair("Enabled","true");
-	private static Pair<String,String> option1 = new Pair("Chunk Size","300");
-	private static Pair<String,String> option2 = new Pair("Window Size","10");
-	private static Pair<String,String> option3 = new Pair("Ensemble Pool","20");
-	private static Pair[] ensembleOptions = {option0,option1,option2,option3};
+	private static Pair<String,String> option1 = new Pair("Window Size","10");
+	private static Pair<String,String> option2 = new Pair("Ensemble Pool","20");
+	private static Pair[] ensembleOptions = {option0,option1,option2};
 
 	LearnOptions(){
 		classifiers.add(new moa.classifiers.bayes.NaiveBayes());
@@ -238,9 +237,6 @@ public class LearnOptions {
 						}
 					break;
 					case 1:
-						ensembleOptions[selectionIdx].setValue(userIn.next());
-					break;
-					case 2:
 						String window = userIn.next();
 						String ensemblePool = ensembleOptions[3].getValue().toString();
 						if (Integer.valueOf(window)<=Integer.valueOf(ensemblePool)){
@@ -249,7 +245,7 @@ public class LearnOptions {
 							System.out.println("\nError: Please type a number less than or equal to ensemble pool");
 						}
 					break;
-					case 3:
+					case 2:
 						String window2 = ensembleOptions[2].getValue().toString();
 						String ensemblePool2 = userIn.next();
 						if (Integer.valueOf(ensemblePool2)>=Integer.valueOf(window2)){
@@ -288,8 +284,7 @@ public class LearnOptions {
 	}
 	public static int[] getEnsembleParameters(){
 		int[] parameters = {Integer.valueOf(ensembleOptions[1].getValue().toString()),
-							Integer.valueOf(ensembleOptions[2].getValue().toString()),
-							Integer.valueOf(ensembleOptions[3].getValue().toString())};
+							Integer.valueOf(ensembleOptions[2].getValue().toString())};
 		return parameters;
 	}
 }

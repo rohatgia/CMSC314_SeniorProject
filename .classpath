@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<classpath>
-	<classpathentry excluding="jars/moa/examples/" kind="src" path=""/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="/home/xsi3rr4x/Desktop/Programming/Java/Workspace/CMSC314_SeniorProject/CMSC314_SeniorProject/jars/moa/moa.jar"/>
-	<classpathentry kind="lib" path="/home/xsi3rr4x/Desktop/Programming/Java/Workspace/CMSC314_SeniorProject/CMSC314_SeniorProject/jars/moa/sizeofag-1.0.0.jar"/>
-	<classpathentry kind="output" path="bin"/>
-</classpath>

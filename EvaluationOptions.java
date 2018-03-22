@@ -43,7 +43,7 @@ public class EvaluationOptions {
 			break;
 		}
 		if(!exit){
-			displayMenu();
+			this.displayMenu();
 		}
     }
     
