@@ -279,14 +279,14 @@ public class LearnOptions {
 			editEnsemble(userIn, selectionIdx);
 		}
 	}
-	public boolean getEnsembleStatus(){
+	public static boolean getEnsembleStatus(){
 		if (ensembleOptions[2].getValue().toString().equals("true")){
 			return true;
 		} else {
 			return false;
 		}
 	}
-	public int[] getEnsembleParameters(){
+	public static int[] getEnsembleParameters(){
 		int[] parameters = {Integer.valueOf(ensembleOptions[1].getValue().toString()),
 							Integer.valueOf(ensembleOptions[2].getValue().toString()),
 							Integer.valueOf(ensembleOptions[3].getValue().toString())};
