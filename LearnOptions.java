@@ -280,7 +280,7 @@ public class LearnOptions {
 		}
 	}
 	public static boolean getEnsembleStatus(){
-		if (ensembleOptions[2].getValue().toString().equals("true")){
+		if (ensembleOptions[0].getValue().toString().equals("true")){
 			return true;
 		} else {
 			return false;

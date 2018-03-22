@@ -43,12 +43,11 @@ public class CS314Menu{
         	break;
         case 3:
         	if (LearnOptions.getEnsembleStatus() == false){
-				//initializeStreams();
-				//tempDoTask();
-				System.out.println("wrong");
-			} else {
+				initializeStreams();
+				tempDoTask();
+        	} else {
         		int[] parameters = LearnOptions.getEnsembleParameters();
-				System.out.println(parameters[1]);
+        		//start with AUE code
 			}
         	System.out.println("Task Complete");
         	break;
