@@ -42,8 +42,14 @@ public class CS314Menu{
         	buildTask.displayMenu();
         	break;
         case 3:
-        	initializeStreams();
-        	tempDoTask();
+        	if (LearnOptions.getEnsembleStatus() == false){
+				//initializeStreams();
+				//tempDoTask();
+				System.out.println("wrong");
+			} else {
+        		int[] parameters = LearnOptions.getEnsembleParameters();
+				System.out.println(parameters[1]);
+			}
         	System.out.println("Task Complete");
         	break;
         case 101:
