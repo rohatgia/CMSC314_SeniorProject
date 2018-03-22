@@ -23,10 +23,12 @@ public class EvaluationOptions {
 	}
 	
     public void displayMenu(){
-        Scanner userIn = new Scanner(System.in);
+		boolean exit=false;
+		Scanner userIn = new Scanner(System.in);
         System.out.println("Please enter a menu option: \n" +
                            "1) Confusion Matrix:" + confusionMatrixOption + "\n"+
-                           "2) Accuracy:" + accuracyOption + "\n");
+                           "2) Accuracy:" + accuracyOption + "\n"+
+				           "101) Go back");
         int userChoice = userIn.nextInt();
         
         switch (userChoice){
@@ -36,7 +38,13 @@ public class EvaluationOptions {
         case 2:
         	accuracyOption = !accuracyOption;
         	break;
-        	}
+		case 101:
+			exit=true;
+			break;
+		}
+		if(!exit){
+			displayMenu();
+		}
     }
     
     /*

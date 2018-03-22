@@ -90,7 +90,6 @@ public class LearnOptions {
         case 101:
         	exit=true;
         	break;
-        
         }
         if(!exit){
         	displayMenu();
