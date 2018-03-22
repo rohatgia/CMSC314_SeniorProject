@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="moa">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/jars/moa" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="file://$PROJECT_DIR$/jars/moa/doc/apidocs" />
+    </JAVADOC>
+    <SOURCES />
+    <jarDirectory url="file://$PROJECT_DIR$/jars/moa" recursive="false" />
+  </library>
+</component>
