@@ -19,6 +19,7 @@
  */
 
 import java.util.Random;
+
 import com.github.javacliparser.FloatOption;
 import com.github.javacliparser.IntOption;
 import moa.core.FastVector;
@@ -35,29 +36,35 @@ import com.yahoo.labs.samoa.instances.InstancesHeader;
 
 /**
  * Stream generator for Hyperplane data stream.
+ * Should probably use abstraction and inheritance for the hyperplane.
  *
  * @author Albert Bifet (abifet at cs dot waikato dot ac dot nz)
+ * @author Dmitriy Voronin
+ * New Version()
  * @version $Revision: 7 $
  */
 public class CustomHyperplaneGenerator extends AbstractOptionHandler implements
         InstanceStream {
 
+
     @Override
     public String getPurposeString() {
-        return "Generates a problem of predicting class of a rotating hyperplane with class inbalance.";
+        return "Generates a problem of predicting class of a rotating hyperplane with class imbalance.";
     }
 
     private static final long serialVersionUID = 1L;
+    private double ratio;
+    private double currentRatio;
 
     public IntOption instanceRandomSeedOption = new IntOption(
             "instanceRandomSeed", 'i',
             "Seed for random generation of instances.", 1);
 
     public IntOption numClassesOption = new IntOption("numClasses", 'c',
-            "The number of classes to generate.", 2, 2, Integer.MAX_VALUE);
+            "The number of classes to generate.", 2, 2, 2);
 
     //Add class bias for different classes within the stream
-    public IntOption classBiasOption = new IntOption("ratio", 'r', "The ratio of minority to majority.", 50, 0, 100);
+    public FloatOption classBiasOption = new FloatOption("ratio", 'r', "The ratio of minority to majority.", 0.5, 0, 1);
 
     public IntOption numAttsOption = new IntOption("numAtts", 'a',
             "The number of attributes to generate.", 10, 0, Integer.MAX_VALUE);
@@ -154,8 +161,37 @@ public class CustomHyperplaneGenerator extends AbstractOptionHandler implements
         Instance inst = new DenseInstance(1.0, attVals);
         inst.setDataset(getHeader());
         inst.setClassValue(classLabel);
-        addDrift();
-        return new InstanceExample(inst);
+
+        //Check if the ratio holds exactly
+        //TODO make approximate?
+
+        if (this.currentRatio >= this.ratio) {
+            //We need more majority classes to fix current ratio
+            if (classLabel == 1) {
+                //Okay we got a majority class
+                //Lets modify current ratio to move closer to the fixed ratio
+                this.currentRatio -= (this.ratio * this.ratio);
+                addDrift();
+                //Then return the instance
+                return new InstanceExample(inst);
+            } else
+                return nextInstance();
+
+        } else if (this.currentRatio <= this.ratio) {
+            //We need more minority classes
+            if (classLabel == 0) {
+                //Lets modify current ratio to move closer to the fixed ratio
+                this.currentRatio += this.ratio;
+                addDrift();
+                //Then return the instance
+                return new InstanceExample(inst);
+            } else
+                return nextInstance();
+        }
+
+        //Never reaches here?
+        //return new InstanceExample(inst);
+        return null;
     }
 
     private void addDrift() {
@@ -177,6 +213,7 @@ public class CustomHyperplaneGenerator extends AbstractOptionHandler implements
             this.weights[i] = this.instanceRandom.nextDouble();
             this.sigma[i] = (i < this.numDriftAttsOption.getValue() ? 1 : 0);
         }
+        this.ratio = this.classBiasOption.getValue();
     }
 
     @Override
