@@ -113,17 +113,17 @@ public class CS314Menu{
     	}
     	System.out.println("----------------------");
     }
-    
+
 	public void temp_export_DataSet(String outputFileName, ArrayList <Instance> output) throws IOException{ //TODO I can make this more generic using array of Instance instead
 		String fileName="";
     	Scanner scan= new Scanner(System.in);
     	System.out.println("Please Enter File Name");
     	fileName= scan.nextLine();
-    	
+
     	FileWriter writer = new FileWriter(new File(fileName));
 		//write header
 		writer.write(configureStreams.selectedStream.getHeader().toString());
-		
+
 		//write delimited data
 		for(int i = 0; i < output.size(); i++){
 			String s = output.get(i).toString();
@@ -149,4 +149,6 @@ public class CS314Menu{
     public boolean getTrained(){
     	return this.modelTrained;
     }
+
+
 }
